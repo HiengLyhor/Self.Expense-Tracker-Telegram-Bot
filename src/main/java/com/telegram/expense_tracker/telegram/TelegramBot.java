@@ -155,25 +155,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             }
 
-//            if (text.startsWith("/budget")) {
-//                String[] parts = text.split("\\s+", 2);
-//                if (parts.length < 2) {
-//                    sendMessage(chatId, "❌ Usage: /budget <amount> <currency>");
-//                    return;
-//                }
-//
-//                try {
-//
-//                    double amount = Double.parseDouble(parts[1]);
-//                    expenseService.addBudget(chatId, "USD", amount);
-//
-//                } catch (NumberFormatException e) {
-//                    sendMessage(chatId, "❌ Invalid amount. Example: /budget 50");
-//                } catch (Exception e) {
-//                    sendErrorMessage(e.getMessage(), text);
-//                }
-//
-//            }
+            if (text.startsWith("/myFund") && username.equals("Lyhor_Hieng")) {
+                double amountLeft = 500.0 - expenseService.getSummaryForLyhor();
+                sendMessage(chatId, "💵 Hello Lyhor, Your budget left in this month is: " + amountLeft);
+            }
 
         } else {
             sendMessage(chatId, "Our bot only available for personal chat.\nPlease contact our owner @Lyhor_Hieng in order to suggest extra feature.");

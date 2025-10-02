@@ -114,6 +114,15 @@ public class ExpenseService {
         return sb.toString();
     }
 
+    public double getSummaryForLyhor() {
+        UserInfo user = userInfoService.getUserInfoByUsername("Lyhor_Hieng");
+        List<Expense> expenses = expenseRepository.findByUserId(user.getId());
+        return expenses.stream()
+                .map(Expense::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .doubleValue();
+    }
+
     public int deleteAllExpensesExceptThisMonth(String username) {
 
         UserInfo userInfoByUsername = userInfoService.getUserInfoByUsername(username);
