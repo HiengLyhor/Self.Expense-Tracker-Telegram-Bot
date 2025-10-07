@@ -157,7 +157,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if (text.startsWith("/myFund") && username.equals("Lyhor_Hieng")) {
                 double amountLeft = 500.0 - expenseService.getSummaryForLyhor();
-                sendMessage(chatId, "💵 Hello Lyhor, Your budget left in this month is: " + amountLeft);
+                sendMessage(chatId, String.format("💵 Hello Lyhor, Your budget left in this month is: %.2f", amountLeft));
             }
 
         } else {
